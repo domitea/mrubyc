@@ -103,6 +103,8 @@ typedef struct RMutex {
 
 #define MRBC_MUTEX_INITIALIZER { 0 }
 
+typedef void (*mrbc_irq_callback_t)(int line, void *user_data);
+
 
 /***** Global variables *****************************************************/
 /***** Function prototypes **************************************************/
@@ -130,6 +132,9 @@ void mrbc_cleanup(void);
 void mrbc_init(void *heap_ptr, unsigned int size);
 void pq(const mrbc_tcb *p_tcb);
 void pqall(void);
+int mrbc_irq_register(int line, mrbc_irq_callback_t cb, void *user_data);
+void mrbc_irq_raise(int line);
+void mrbc_irq_poll(void);
 //@endcond
 
 
